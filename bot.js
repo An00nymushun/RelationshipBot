@@ -888,7 +888,9 @@ const RelationshipGraphCommand = async (message, command, commandBase) => {
 		graphviz.on('exit', async (code) => {
 			if(code !== 0) {
 				LogError({"GRAPHVIZ ERROR": graphvizError});
-				//////TODO handle error
+				await Reply(message, "There was an error rendering the graph");
+				FreeRenderSlot(slot);
+				return;
 			}
 			else {
 				if(delayNotification != null) {
@@ -1728,7 +1730,11 @@ DiscordClient.on('messageReactionAdd', (reaction, user) => {
 		}
 	}
 	else {
-		if(user.id !== request.for) return; //TODO clear spam reactions
+		// Clear spam reactions
+		if(user.id !== request.for) {
+			reaction.remove().catch(LogError);
+			return;
+		}
 
 		let emojiName = reaction.emoji.name;
 		if(emojiName === YesEmoji) {
