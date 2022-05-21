@@ -1015,7 +1015,8 @@ const PictureEditCommand = async (message, command, commandBase, pictureName) =>
 						avatars.push([user, avatar]);
 					}
 					catch(err) {;
-						//TODO
+						LogError(err);
+						await Reply(message, "There was an error fetching one of the mentioned users' avatars");
 					}
 					CdnDownloadSemaphoreRelease();
 				}));
