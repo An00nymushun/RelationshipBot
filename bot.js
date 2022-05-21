@@ -1767,9 +1767,12 @@ Fs.readdir("graphs").then(files => files.map(filename => Fs.unlink(`graphs/${fil
 const dbl = new (require('dblapi.js'))(Config.DBLTOKEN, DiscordClient);
 DiscordClient.login(Config.TOKEN);
 
-// Don't crash on unhandled rejections
-process.on('unhandledRejection', (reason, p) => {
-	LogError(`Unhandled Rejection at: Promise ${p}, reason: ${reason}`);
+// If detect ratelimit, wait for it to clear
+DiscordClient.on('rateLimit', (rateLimitInfo) => {
+	LogError(`Ratelimit hit: ${rateLimitInfo.path}, retry after ${rateLimitInfo.retryAfter}ms`);
+	setTimeout(() => {
+		DiscordClient.restart();
+	}, rateLimitInfo.retryAfter);
 });
 
 })();
