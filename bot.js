@@ -1767,5 +1767,9 @@ Fs.readdir("graphs").then(files => files.map(filename => Fs.unlink(`graphs/${fil
 const dbl = new (require('dblapi.js'))(Config.DBLTOKEN, DiscordClient);
 DiscordClient.login(Config.TOKEN);
 
+// Don't crash on unhandled rejections
+process.on('unhandledRejection', (reason, p) => {
+	LogError(`Unhandled Rejection at: Promise ${p}, reason: ${reason}`);
+});
 
 })();
