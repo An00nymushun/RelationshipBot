@@ -1768,8 +1768,8 @@ const dbl = new (require('dblapi.js'))(Config.DBLTOKEN, DiscordClient);
 DiscordClient.login(Config.TOKEN);
 
 // Restart function
-async function restartBot(channel) {
-	await channel.send("Bot is being ratelimited by Discord, please wait a few minutes before trying again.");
+async function restartBot(message) {
+	await message.channel.send("Bot is being ratelimited by Discord, please wait a few minutes before trying again.");
 	Log("Restarting bot...");
 	await DiscordClient.destroy();
 	await DiscordClient.login(Config.TOKEN);
