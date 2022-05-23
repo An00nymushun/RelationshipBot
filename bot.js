@@ -1784,10 +1784,12 @@ DiscordClient.on('rateLimit', (rateLimitInfo) => {
 	}, rateLimitInfo.retryAfter);
 });
 
-// If a shard times out, restart it
+// If a shard times out, retry the shard
 DiscordClient.on('shardDisconnect', (event) => {
-	LogError(`Shard disconnected: ${event.shard.id}`);
-	restartBot();
+	LogError(`Shard ${event.shard.id} disconnected: ${event.reason}`);
+	setTimeout(() => {
+		restartBot();
+	}, 5000);
 });
 
 // if sharding still in progress, ignore
