@@ -1771,7 +1771,7 @@ DiscordClient.login(Config.TOKEN);
 async function restartBot() {
 	Log("Restarting bot...");
 	await DiscordClient.destroy();
-	await DiscordClient.login(Token);
+	await DiscordClient.login(Config.TOKEN);
 	Log("Bot restarted");
 }
 
