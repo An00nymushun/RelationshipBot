@@ -1775,4 +1775,10 @@ DiscordClient.on('rateLimit', (rateLimitInfo) => {
 	}, rateLimitInfo.retryAfter);
 });
 
+// If a shard times out, restart it
+DiscordClient.on('shardDisconnect', (event) => {
+	LogError(`Shard disconnected: ${event.shard.id}`);
+	DiscordClient.restart();
+});
+
 })();
