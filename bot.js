@@ -1777,7 +1777,7 @@ async function restartBot() {
 
 // If detect ratelimit, ignore it
 DiscordClient.on('rateLimit', (rateLimitInfo) => {
-	LogError(`Ratelimit hit: ${rateLimitInfo.path}, retry after ${rateLimitInfo.retryAfter}ms`);
+	LogError(`Ratelimit hit: ${rateLimitInfo.path}, retry after ${rateLimitInfo.timeout}ms`);
 });
 
 // If a shard times out, retry the shard
