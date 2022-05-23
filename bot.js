@@ -1790,4 +1790,9 @@ DiscordClient.on('shardDisconnect', (event) => {
 	restartBot();
 });
 
+// if sharding still in progress, ignore
+DiscordClient.on('shardPreReady', (event) => {
+	LogError(`Shard preready: ${event.shard.id}`);
+});
+
 })();
