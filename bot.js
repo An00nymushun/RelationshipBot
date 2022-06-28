@@ -17,7 +17,7 @@
     makeCache: Discord.Options.cacheWithLimits({
       MessageManager: {
         sweepInterval: 2111,
-        sweepFilter: Discord.LimitedCollection.filterByLifetime({
+        sweepFilter: Discord.Sweepers.filterByLifetime({
           lifetime: 31 * 60,
           getComparisonTimestamp: (e) => e.editedTimestamp ?? e.createdTimestamp,
         }),
