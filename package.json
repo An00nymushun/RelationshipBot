@@ -16,7 +16,7 @@
     "dotenv": "^16.0.1",
     "erlpack": "github:discord/erlpack",
     "graphviz": "0.0.9",
-    "mongoose": "^5.9.11",
+    "mongoose": "^6.4.6",
     "mongoose-long": "^0.2.1",
     "node-fetch": "^2.6.7",
     "prettier": "^2.6.2",
